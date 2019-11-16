@@ -1,0 +1,38 @@
+{
+  "name": "egg-eureka-plus",
+  "version": "1.0.1",
+  "description": "eureka plugin for egg.js",
+  "eggPlugin": {
+    "name": "eureka"
+  },
+  "keywords": [
+    "egg",
+    "eggPlugin",
+    "egg-plugin"
+  ],
+  "files": [
+    "typing/index.d.ts",
+    "config/config.default.js",
+    "app.js",
+    "index.js",
+    "lib/init.js"
+  ],
+  "types": "./typing/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "egg": "^2.23.0",
+    "eureka-js-client": "^4.5.0",
+    "querystring": "^0.2.0",
+    "tslib": "^1.10.0",
+    "uuid": "^3.3.3"
+  },
+  "devDependencies": {
+    "typescript": "^3.6.3"
+  },
+  "main": "./dist.js",
+  "engines": {
+    "node": ">=8.0.0"
+  }
+}
