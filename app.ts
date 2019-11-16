@@ -1,22 +1,6 @@
 import { EurekaClient } from 'eureka-js-client';
 import uuidV1 = require('uuid/v1');
 
-interface IForgedEureka {
-  getServiceByAppId(appId: string): Promise<string>;
-
-  getServiceByVipAddress(vipAddress: string): Promise<string>;
-
-  getInstancesByAppId(
-    appId: string,
-    cb: (error: Error | null, config: EurekaClient.EurekaInstanceConfig[]) => void,
-  ): void;
-
-  getInstancesByVipAddress(
-    vidAddress: string,
-    cb: (error: Error | null, config: EurekaClient.EurekaInstanceConfig[]) => void,
-  ): void;
-}
-
 export default app => {
   if (app.config.eureka) {
     app.eureka = new ForgedEureka(app);

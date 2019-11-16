@@ -66,14 +66,22 @@ config.eureka = {
 
 # 使用方式
 
-> 挂载的app.eureka实例，主要开放2个api，分别是：
+> 挂载的app.eureka实例，主要开放4个api，分别是：
 
 ```typescript
   getServiceByAppId(appId: string): Promise<string>;
   getServiceByVipAddress(vipAddress: string): Promise<string>;
+  getInstancesByAppId(
+    appId: string,
+    cb: (error: Error | null, config: EurekaClient.EurekaInstanceConfig[]) => void,
+  ): void;
+  getInstancesByVipAddress(
+    vidAddress: string,
+    cb: (error: Error | null, config: EurekaClient.EurekaInstanceConfig[]) => void,
+  ): void;
 
 ```
-> 这2个api都是代理到agent进程进行去执行的，用来获取eureka注册中心上指定的服务地址，多实例的情况下，会随机选择一个返回。
+> 这4个api都是代理到agent进程进行去执行的，用来获取eureka注册中心上指定的服务地址。
 
 
 # 应用示例

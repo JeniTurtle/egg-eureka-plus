@@ -14,6 +14,7 @@
     "typing/index.d.ts",
     "config/config.default.js",
     "app.js",
+    "agent.js",
     "index.js",
     "lib/init.js"
   ],
