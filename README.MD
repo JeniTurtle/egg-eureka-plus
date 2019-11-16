@@ -18,7 +18,7 @@ $ npm i egg-eureka-plus --save
 
 示例：（具体参考eureka-js-client）
 
-```
+```js
 // 项目名/config/plugin.js
 
 const plugin = {
@@ -30,7 +30,7 @@ const plugin = {
 
 ```
 
-```
+```js
 // 项目名/config/config.default.js
 
 config.eureka = {
@@ -68,12 +68,12 @@ config.eureka = {
 
 > 挂载的app.eureka实例，主要开放2个api，分别是：
 
-```
+```typescript
   getServiceByAppId(appId: string): Promise<string>;
   getServiceByVipAddress(vipAddress: string): Promise<string>;
 
 ```
-> 这2个api都是用来获取eureka注册中心上指定的服务地址，多实例的情况下，会随机选择一个返回。
+> 这2个api都是代理到agent进程进行去执行的，用来获取eureka注册中心上指定的服务地址，多实例的情况下，会随机选择一个返回。
 
 
 # 应用示例
