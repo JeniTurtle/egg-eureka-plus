@@ -6,6 +6,8 @@ export default async (config, agent) => {
   };
 
   const eureka: any = new Eureka(config);
+  eureka.logger.info = str => agent.logger.info(`[egg-eureka] ${str}`);
+  eureka.logger.warn = str => agent.logger.warn(`[egg-eureka] ${str}`);
 
   eureka.register = (callback = _err => {}, status?: string) => {
     if (status) {
@@ -42,26 +44,6 @@ export default async (config, agent) => {
       },
     );
   };
-
-  // @ts-ignore
-  eureka.on('started', () => {
-    logger('eureka启动成功');
-  });
-
-  // @ts-ignore
-  eureka.on('registered	', () => {
-    logger('eureka注册成功');
-  });
-
-  // @ts-ignore
-  eureka.on('deregistered	', () => {
-    logger('eureka已注销');
-  });
-
-  // @ts-ignore
-  eureka.on('registryUpdated	', () => {
-    logger('eureka更新注册成功');
-  });
 
   await new Promise((resolve, reject) => {
     eureka.config.instance.status = 'OUT_OF_SERVICE';
