@@ -29,7 +29,7 @@ export default async (config, agent) => {
         clearTimeout(connectionTimeout);
         if (!error && response.statusCode === 204) {
           eureka.logger.info(
-            `registered with eureka [${status}]: `,
+            `registered with eureka [${eureka.config.instance.status}]: `,
             `${eureka.config.instance.app}/${eureka.instanceId}`,
           );
           eureka.emit('registered');
