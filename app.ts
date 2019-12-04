@@ -14,6 +14,18 @@ export default app => {
 class ForgedEureka implements IForgedEureka {
   constructor(private _app) {}
 
+  fetchRegistry() {
+    const uuid = uuidV1();
+    this._app.messenger.sendToAgent('eurekaFetchRegistry', {
+      eventId: uuid,
+    });
+    this._app.messenger.once(uuid, error => {
+      if (error) {
+        this._app.logger.error(error);
+      }
+    });
+  }
+
   getInstancesByAppId(appId: string, cb) {
     const uuid = uuidV1();
     this._app.messenger.sendToAgent('eurekaGetInstancesByAppId', {

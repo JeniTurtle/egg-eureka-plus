@@ -3,6 +3,8 @@ interface IForgedEureka {
 
   getServiceByVipAddress(vipAddress: string): Promise<string>;
 
+  fetchRegistry(): void;
+
   getInstancesByAppId(
     appId: string,
     cb: (error: Error | null, config: EurekaClient.EurekaInstanceConfig[]) => void,

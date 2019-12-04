@@ -23,13 +23,33 @@ async function createEureka(config, agent) {
 
   // 当所有worker启动完毕时，再重新注册eureka服务，把状态设置为UP
   agent.messenger.once('egg-ready', async () => {
-    eureka.deregister(err => {
+    eureka.stop(err => {
       if (err) {
         agent.logger.error('eureka重新注册失败');
         throw err;
       }
       eureka.config.instance.status = 'UP';
       eureka.start();
+    });
+  });
+
+  agent.messenger.on('eurekaFetchRegistry', async eventId => {
+    let error = null;
+    try {
+      await new Promise((resolve, reject) => {
+        eureka.fetchRegistry(err => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve();
+          }
+        });
+      });
+    } catch (err) {
+      error = err;
+    }
+    agent.messenger.sendToApp(eventId, {
+        error,
     });
   });
 
