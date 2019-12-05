@@ -1,13 +1,10 @@
 module.exports = () => {
   const config: any = {
-    rabbitmq: {
-      enable: true,
+    eureka: {
+      client: {
+        shouldUseDelta: true,
+      },
     },
-  };
-
-  config.rabbitmq.consumer = {
-    // custom additional directory, full path
-    directory: [],
   };
 
   return config;

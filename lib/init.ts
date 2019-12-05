@@ -6,8 +6,15 @@ export default async (config, agent) => {
   };
 
   const eureka: any = new Eureka(config);
+  const stop = eureka.stop.bind(eureka);
+
   eureka.logger.info = str => agent.logger.info(`[egg-eureka] ${str}`);
   eureka.logger.warn = str => agent.logger.warn(`[egg-eureka] ${str}`);
+
+  eureka.stop = (callback = () => {}) => {
+    eureka.hasFullRegistry = false;
+    stop(callback);
+  }
 
   eureka.register = (callback = _err => {}, status?: string) => {
     if (status) {
