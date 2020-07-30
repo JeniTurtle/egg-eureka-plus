@@ -53,12 +53,12 @@ class ForgedEureka implements IForgedEureka {
       this.getInstancesByAppId(appId, (error: Error | null, clients: EurekaClient.EurekaInstanceConfig[]) => {
         if (error) {
           this._app.logger.error(error);
-          reject(error);
+          return reject(error);
         } else {
           if (!clients || clients.length === 0) {
             const err = new Error(`服务[${appId}]未找到，请重试`);
             this._app.logger.error(err);
-            reject(err);
+            return reject(err);
           }
           const serviceIndex = Math.floor(Math.random() * clients.length);
           // @ts-ignore
@@ -73,12 +73,12 @@ class ForgedEureka implements IForgedEureka {
       this.getInstancesByVipAddress(vipAddress, (error: Error | null, clients: EurekaClient.EurekaInstanceConfig[]) => {
         if (error) {
           this._app.logger.error(error);
-          reject(error);
+          return reject(error);
         } else {
           if (!clients || clients.length === 0) {
             const err = new Error(`服务[${vipAddress}]未找到，请重试`);
             this._app.logger.error(err);
-            reject(err);
+            return reject(err);
           }
           const serviceIndex = Math.floor(Math.random() * clients.length);
           resolve(`http://${clients[serviceIndex].instanceId}`);

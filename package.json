@@ -1,6 +1,6 @@
 {
   "name": "egg-eureka-plus",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "eureka plugin for egg.js",
   "eggPlugin": {
     "name": "eureka"
